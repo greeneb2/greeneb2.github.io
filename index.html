@@ -7,6 +7,10 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://waph-uc.github.io/clock.js"></script>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" 
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" 
+        crossorigin="anonymous"></script>
 <style>
 body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
 .w3-row-padding img {margin-bottom: 12px}
@@ -19,12 +23,12 @@ body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
 </style>
 </head>
 
-<body class="w3-black">
+<body class="w3-black" onload="checkCookie()">
 
 <!-- Icon Bar (Sidebar - hidden on small screens) -->
 <nav class="w3-sidebar w3-bar-block w3-small w3-hide-small w3-center">
   <!-- Avatar image in top left corner -->
-  <img src="/images/headshot_edit.jpg" style="width:100%">
+  <img src="/images/headshot.jpg" style="width:100%">
   <a href="#" class="w3-bar-item w3-button w3-padding-large w3-black">
     <i class="fa fa-home w3-xxlarge"></i>
     <p>HOME</p>
@@ -37,11 +41,58 @@ body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
     <i class="fa fa-envelope w3-xxlarge"></i>
     <p>CONTACT</p>
   </a>
-    <a href="#photos" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
-    <i class="fa fa-eye w3-xxlarge"></i>
-    <p>PHOTOS</p>
+    <a href="waph.html" class="w3-bar-item w3-button w3-padding-large w3-hover-black">
+    <i class="fa fa-globe w3-xxlarge"></i>
+    <p>WAPH</p>
   </a>
+  <canvas id="analog-clock" width="100%" height="100%" style="padding-top: 100%;"></canvas>
 </nav>
+<script type="text/JavaScript">
+		function displayTime(){
+			document.getElementById('digit-clock').innerHTML = "Current time: " + new Date();
+		}
+		setInterval(displayTime, 500);
+		// code for the analog clock
+		var canvas = document.getElementById("analog-clock");
+		var ctx = canvas.getContext("2d");
+		var radius = canvas.height / 2;
+		ctx.translate(radius, radius);
+		radius = radius * 0.90
+		setInterval(drawClock, 500);
+
+		function drawClock() {
+			drawFace(ctx, radius);
+			drawNumbers(ctx, radius);
+			drawTime(ctx, radius);
+		}
+
+    function setCookie(){
+      const d = new Date();
+      document.cookie = d;
+      alert("Welcome to my homepage");
+    }
+
+    function checkCookie(){
+      if (document.cookie != ""){
+        alert("Welcome back! Your last visit was " + document.cookie);
+      }
+      else {
+        setCookie();
+      }
+    }
+			// $.get("https://v2.jokeapi.dev/joke/Programming?type=single",
+			// 	  function(result) {
+			// 	  	console.log("From jokeAPI: " + JSON.stringify(result));
+			// 	  	$("#response").html("A programming joke of the day: " + result.joke);
+			// 	  }
+			// );
+
+			// async function guessAge(name){
+			// 	const response = await fetch("https://api.agify.io/?name="+name);
+			// 	const result = await response.json();
+			// 	$("#response").html("Hi "+ name + ", your age should be " + result.age);
+			// }
+</script>
 
 <!-- Navbar on small screens (Hidden on medium and large screens) -->
 <div class="w3-top w3-hide-large w3-hide-medium" id="myNavbar">
@@ -49,7 +100,7 @@ body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
     <a href="#" class="w3-bar-item w3-button" style="width:25% !important">HOME</a>
     <a href="#about" class="w3-bar-item w3-button" style="width:25% !important">ABOUT</a>
     <a href="#contact" class="w3-bar-item w3-button" style="width:25% !important">CONTACT</a>
-    <a href="#photos" class="w3-bar-item w3-button" style="width:25% !important">PHOTOS</a>
+    <a href="waph.html" class="w3-bar-item w3-button" style="width:25% !important">WAPH</a>
   </div>
 </div>
 
@@ -57,104 +108,57 @@ body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
 <div class="w3-padding-large" id="main">
   <!-- Header/Home -->
   <header class="w3-container w3-padding-32 w3-center w3-black" id="home">
-    <h1 class="w3-jumbo"><span class="w3-hide-small">I'm</span> John Doe.</h1>
-    <p>Photographer and Web Designer.</p>
-    <img src="/w3images/man_smoke.jpg" alt="boy" class="w3-image" width="992" height="1108">
+    <h1 class="w3-jumbo"><span class="w3-hide-small">I'm</span> Brad Greene.</h1>
+    <p>Cyber Software Engineer.</p>
+    <img src="/images/headshot.jpg" alt="boy" class="w3-image" width="992" height="1108">
   </header>
 
   <!-- About Section -->
   <div class="w3-content w3-justify w3-text-grey w3-padding-64" id="about">
-    <h2 class="w3-text-light-grey">My Name</h2>
+    <h2 class="w3-text-light-grey">Brad Greene</h2>
     <hr style="width:200px" class="w3-opacity">
-    <p>Some text about me. Some text about me. I am lorem ipsum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-      ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur
-      adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+    <p>
+    	My name is Brad Greene. I am currently a Cyber Software Engineer at Northrop Grumman. I have a Bachelors Degree in Computer Engineering from the University of Cincinnati, with a minor in Computer Science. I have chosen to further my education by getting a Master of Science in Computer Science at the University of Cincinnati. During my time at U.C., I have been lucky enough to have 5 interships at Northrop Grumman. Here, I have learned many professional and techinal skills. Each day I continue to learn new things.
     </p>
+
     <h3 class="w3-padding-16 w3-text-light-grey">My Skills</h3>
-    <p class="w3-wide">Photography</p>
-    <div class="w3-white">
-      <div class="w3-dark-grey" style="height:28px;width:95%"></div>
-    </div>
-    <p class="w3-wide">Web Design</p>
-    <div class="w3-white">
-      <div class="w3-dark-grey" style="height:28px;width:85%"></div>
-    </div>
-    <p class="w3-wide">Photoshop</p>
+    <p class="w3-wide">Python</p>
     <div class="w3-white">
       <div class="w3-dark-grey" style="height:28px;width:80%"></div>
+    </div>
+    <p class="w3-wide">Git</p>
+    <div class="w3-white">
+      <div class="w3-dark-grey" style="height:28px;width:80%"></div>
+    </div>
+    <p class="w3-wide">C</p>
+    <div class="w3-white">
+      <div class="w3-dark-grey" style="height:28px;width:60%"></div>
     </div><br>
     
     <div class="w3-row w3-center w3-padding-16 w3-section w3-light-grey">
       <div class="w3-quarter w3-section">
-        <span class="w3-xlarge">11+</span><br>
-        Partners
+        <span class="w3-xlarge">5+</span><br>
+        Years at Northrop Grumman
       </div>
       <div class="w3-quarter w3-section">
-        <span class="w3-xlarge">55+</span><br>
-        Projects Done
+        <span class="w3-xlarge">1</span><br>
+        Year as Team Lead
       </div>
       <div class="w3-quarter w3-section">
-        <span class="w3-xlarge">89+</span><br>
-        Happy Clients
+        <span class="w3-xlarge">5</span><br>
+        Total Engineers Lead
       </div>
       <div class="w3-quarter w3-section">
-        <span class="w3-xlarge">150+</span><br>
-        Meetings
+        <span class="w3-xlarge">11</span><br>
+        Meetings with Customer
       </div>
     </div>
 
     <button class="w3-button w3-light-grey w3-padding-large w3-section">
-      <i class="fa fa-download"></i> Download Resume
+      <a href="Resume2024.pdf" download="BradGreene-Resume">
+        <i class="fa fa-download"></i> Download Resume
+      </a>
     </button>
-    
-    <!-- Grid for pricing tables -->
-    <h3 class="w3-padding-16 w3-text-light-grey">My Price</h3>
-    <div class="w3-row-padding" style="margin:0 -16px">
-      <div class="w3-half w3-margin-bottom">
-        <ul class="w3-ul w3-white w3-center w3-opacity w3-hover-opacity-off">
-          <li class="w3-dark-grey w3-xlarge w3-padding-32">Basic</li>
-          <li class="w3-padding-16">Web Design</li>
-          <li class="w3-padding-16">Photography</li>
-          <li class="w3-padding-16">5GB Storage</li>
-          <li class="w3-padding-16">Mail Support</li>
-          <li class="w3-padding-16">
-            <h2>$ 10</h2>
-            <span class="w3-opacity">per month</span>
-          </li>
-          <li class="w3-light-grey w3-padding-24">
-            <button class="w3-button w3-white w3-padding-large w3-hover-black">Sign Up</button>
-          </li>
-        </ul>
-      </div>
-
-      <div class="w3-half">
-        <ul class="w3-ul w3-white w3-center w3-opacity w3-hover-opacity-off">
-          <li class="w3-dark-grey w3-xlarge w3-padding-32">Pro</li>
-          <li class="w3-padding-16">Web Design</li>
-          <li class="w3-padding-16">Photography</li>
-          <li class="w3-padding-16">50GB Storage</li>
-          <li class="w3-padding-16">Endless Support</li>
-          <li class="w3-padding-16">
-            <h2>$ 25</h2>
-            <span class="w3-opacity">per month</span>
-          </li>
-          <li class="w3-light-grey w3-padding-24">
-            <button class="w3-button w3-white w3-padding-large w3-hover-black">Sign Up</button>
-          </li>
-        </ul>
-      </div>
-    <!-- End Grid/Pricing tables -->
-    </div>
-    
-    <!-- Testimonials -->
-    <h3 class="w3-padding-24 w3-text-light-grey">My Reputation</h3>  
-    <img src="/w3images/bandmember.jpg" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:80px">
-    <p><span class="w3-large w3-margin-right">Chris Fox.</span> CEO at Mighty Schools.</p>
-    <p>John Doe saved us from a web disaster.</p><br>
-    
-    <img src="/w3images/avatar_g2.jpg" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:80px">
-    <p><span class="w3-large w3-margin-right">Rebecca Flex.</span> CEO at Company.</p>
-    <p>No one is better than John Doe.</p>
   <!-- End About Section -->
   </div>
 
@@ -164,15 +168,21 @@ body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
     <hr style="width:200px" class="w3-opacity">
 
     <div class="w3-section">
-      <p><i class="fa fa-map-marker fa-fw w3-text-white w3-xxlarge w3-margin-right"></i> Chicago, US</p>
-      <p><i class="fa fa-phone fa-fw w3-text-white w3-xxlarge w3-margin-right"></i> Phone: +00 151515</p>
-      <p><i class="fa fa-envelope fa-fw w3-text-white w3-xxlarge w3-margin-right"> </i> Email: mail@mail.com</p>
+      <p>
+      	<i class="fa fa-map-marker fa-fw w3-text-white w3-xxlarge w3-margin-right"></i> 
+      	Cincinnati, US
+      </p>
+      <p id="email" onclick="showhideEmail()">
+      	<i class="fa fa-envelope fa-fw w3-text-white w3-xxlarge w3-margin-right" ></i>
+        Show my email
+      </p>
+      <script src="email.js"></script>
     </div><br>
     <p>Let's get in touch. Send me a message:</p>
 
-    <form action="/action_page.php" target="_blank">
-      <p><input class="w3-input w3-padding-16" type="text" placeholder="Name" required name="Name"></p>
-      <p><input class="w3-input w3-padding-16" type="text" placeholder="Email" required name="Email"></p>
+    <form>
+      <p><input class="w3-input w3-padding-16" type="text" placeholder="Name" required name="Name" maxlength="50"></p>
+      <p><input class="w3-input w3-padding-16" type="text" placeholder="Email" required name="Email" maxlength="80"></p>
       <p><input class="w3-input w3-padding-16" type="text" placeholder="Subject" required name="Subject"></p>
       <p><input class="w3-input w3-padding-16" type="text" placeholder="Message" required name="Message"></p>
       <p>
@@ -184,44 +194,59 @@ body, h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
   <!-- End Contact Section -->
   </div>
 
-    <!-- Portfolio Section -->
-  <div class="w3-padding-64 w3-content" id="photos">
-    <h2 class="w3-text-light-grey">My Photos</h2>
-    <hr style="width:200px" class="w3-opacity">
-
-    <!-- Grid for photos -->
-    <div class="w3-row-padding" style="margin:0 -16px">
-      <div class="w3-half">
-        <img src="/w3images/wedding.jpg" style="width:100%">
-        <img src="/w3images/rocks.jpg" style="width:100%">
-        <img src="/w3images/sailboat.jpg" style="width:100%">
-      </div>
-
-      <div class="w3-half">
-        <img src="/w3images/underwater.jpg" style="width:100%">
-        <img src="/w3images/chef.jpg" style="width:100%">
-        <img src="/w3images/wedding.jpg" style="width:100%">
-        <img src="/w3images/p6.jpg" style="width:100%">
-      </div>
-    <!-- End photo grid -->
-    </div>
-  <!-- End Portfolio Section -->
+  <!-- Joke API Section -->
+  <script type="text/JavaScript">
+    function getJoke() {
+      $.get("https://v2.jokeapi.dev/joke/Programming?type=single",
+          function(result) {
+            console.log("From jokeAPI: " + JSON.stringify(result));
+            $("#response").html(result.joke);
+          }
+      );
+    }
+    getJoke();
+    setInterval(getJoke, 60 * 1000);
+    
+  </script>
+  <div class="w3-content w3-text-grey">
+    <h3 class="w3-text-light-grey w3-center">Joke Generator</h3>
+    <p id="response"></p>
   </div>
+  <!-- End Joke API Section -->
 
-    <!-- Footer -->
+  <!-- Flag Counter -->
+  <div class="w3-center">
+    <h3 class="w3-text-light-grey w3-center">Flag Counter</h3>
+    <a href="https://info.flagcounter.com/b7o6"><img src="https://s01.flagcounter.com/map/b7o6/size_s/txt_000000/border_CCCCCC/pageviews_0/viewers_0/flags_0/" alt="Flag Counter" border="0"></a>
+  </div>
+  <!-- End Flag Counter -->
+
+  <!-- Comic API Section -->
+  <script type="text/JavaScript">
+    function getComic() {
+      $.get("https://xkcd.vercel.app/?comic=latest",
+          function(result) {
+            console.log("From comicAPI: " + JSON.stringify(result));
+            $("#comicPic").attr({"src": result.img, "alt": result.alt});
+          }
+      );
+    }
+    getComic();
+  </script>
+  <div class="w3-center">
+    <h3 class="w3-text-light-grey w3-center">Comic Generator</h3>
+    <img id="comicPic"></img>
+  </div>
+  <!-- End Comic API Section -->
+
+  <!-- Footer -->
   <footer class="w3-content w3-padding-64 w3-text-grey w3-xlarge">
-    <i class="fa fa-facebook-official w3-hover-opacity"></i>
-    <i class="fa fa-instagram w3-hover-opacity"></i>
-    <i class="fa fa-snapchat w3-hover-opacity"></i>
-    <i class="fa fa-pinterest-p w3-hover-opacity"></i>
-    <i class="fa fa-twitter w3-hover-opacity"></i>
-    <i class="fa fa-linkedin w3-hover-opacity"></i>
+	<p class="w3-medium" id="digit-clock"></p>
     <p class="w3-medium">Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank" class="w3-hover-text-green">w3.css</a></p>
   <!-- End footer -->
   </footer>
 
 <!-- END PAGE CONTENT -->
 </div>
-
 </body>
 </html>
